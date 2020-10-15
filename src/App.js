@@ -1,11 +1,12 @@
 import React from 'react'
-import Layout from './components/Layout'
+import { BrowserRouter } from 'react-router-dom'
+import Routes from './routes'
 
 const App = () => {
 	return (
-		<Layout>
-			<div>APP</div>
-		</Layout>
+		<BrowserRouter>
+			<Routes />
+		</BrowserRouter>
 	)
 }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Flex, Text, Box } from 'rebass'
 
 const Layout = ({ children }) => {
@@ -13,6 +14,10 @@ const Layout = ({ children }) => {
 			<main>{children}</main>
 		</>
 	)
+}
+
+Layout.propTypes = {
+	children: PropTypes.func.isRequired
 }
 
 export default Layout
