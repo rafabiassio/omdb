@@ -21,7 +21,8 @@ function* getByTitle({ data }) {
 		const params = {
 			params: {
 				s: title,
-				apikey: apiKey
+				apikey: apiKey,
+				type: 'movie'
 			}
 		}
 		const { data: response } = yield call(api.get, '', params)

@@ -7,7 +7,7 @@ export default {
 		muted: '#191919',
 		highlight: '#29112c',
 		gray: '#999',
-		purple: '#c0f',
+		purple: '#4527a0',
 	},
 	fonts: {
 		body:

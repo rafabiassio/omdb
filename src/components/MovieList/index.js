@@ -1,10 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 import { Box } from 'rebass'
 
 import Movie from '../Movie'
 
-const MovieList = ({ movies }) => {
+const MovieList = () => {
+	const { movies = [] } = useSelector((state) => ({ movies: state.movie.movies }))
+
 	return (
 		<Box
 			sx={{
@@ -32,7 +35,7 @@ const MovieList = ({ movies }) => {
 }
 
 MovieList.propTypes = {
-	movies: PropTypes.array.isRequired
+	movies: PropTypes.array
 }
 
 export default MovieList

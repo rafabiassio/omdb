@@ -1,14 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import Search from '../../components/Search'
+import MovieList from '../../components/MovieList'
 
 const Home = () => {
 	return (
-		<div>
-			Home
-		</div>
+		<>
+			<Search />
+			<MovieList />
+		</>
 	)
 }
-
-Home.propTypes = {}
 
 export default Home
