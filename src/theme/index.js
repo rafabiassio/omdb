@@ -148,4 +148,27 @@ export default {
 			color: 'secondary',
 		},
 	},
+	buttons: {
+		purple: {
+			bg: 'purple',
+			fontWeight: 'bold',
+			'&:disabled': {
+				opacity: '0.4',
+			},
+		},
+		secondary: {
+			bg: 'secondary',
+			fontWeight: 'bold',
+			'&:disabled': {
+				opacity: '0.4',
+			},
+		},
+		primary: {
+			bg: 'primary',
+			fontWeight: 'bold',
+			'&:disabled': {
+				opacity: '0.4',
+			},
+		}
+	}
 }
