@@ -1,9 +1,11 @@
 import { call, put, takeLatest, all } from 'redux-saga/effects'
+import { api } from '../../../config/axios'
 import * as constants from './constants'
 
-import { getSuccess, getFailure } from './actions'
+import { getByTitleSuccess, getByTitleFailure } from './actions'
 
-const ROUTE = '/movies'
+const apiKey = process.env.API_KEY
+
 const MODULE = 'filme'
 const ERROR = {
 	STORE: `Erro ao salvar ${MODULE}`,
@@ -13,5 +15,23 @@ const ERROR = {
 	UPDATE: `Error ao atualizar ${MODULE}`,
 }
 
+function* getByTitle({ data }) {
+	try {
+		const { title } = data
+		const params = {
+			params: {
+				s: title,
+				apikey: apiKey
+			}
+		}
+		const { data: response } = yield call(api.get, '', params)
+		yield put(getByTitleSuccess(response))
+	} catch (error) {
+		console.error(ERROR.SEARCH)
+		yield put(getByTitleFailure(error))
+	}
+}
 
-export default all([])
+export default all([
+	takeLatest(constants.GET_BY_TITLE.REQUEST, getByTitle),
+])

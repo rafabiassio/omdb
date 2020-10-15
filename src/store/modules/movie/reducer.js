@@ -4,6 +4,7 @@ const initialState = {
 	loading: false,
 	content: null,
 	movies: [],
+	totalResults: 0,
 	error: {},
 }
 
@@ -12,11 +13,14 @@ export default (state = initialState, action) => {
 		case actions.GET_BY_TITLE.REQUEST:
 			return { ...state, loading: true }
 		case actions.GET_BY_TITLE.SUCCESS:
+			const { Search: movies = [], totalResults = 0 } = action.data
+
 			return {
 				...state,
 				loading: false,
 				content: null,
-				movies: action.data,
+				movies,
+				totalResults
 			}
 		case actions.GET_BY_TITLE.FAILURE:
 			return {
