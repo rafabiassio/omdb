@@ -152,6 +152,7 @@ export default {
 		purple: {
 			bg: 'purple',
 			fontWeight: 'bold',
+			height: '4vh',
 			'&:disabled': {
 				opacity: '0.4',
 			},
@@ -159,6 +160,7 @@ export default {
 		secondary: {
 			bg: 'secondary',
 			fontWeight: 'bold',
+			height: '4vh',
 			'&:disabled': {
 				opacity: '0.4',
 			},
@@ -166,6 +168,7 @@ export default {
 		primary: {
 			bg: 'primary',
 			fontWeight: 'bold',
+			height: '4vh',
 			'&:disabled': {
 				opacity: '0.4',
 			},
