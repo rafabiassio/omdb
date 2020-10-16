@@ -9,10 +9,12 @@ module.exports = {
 	],
 	output: {
 		path: path.resolve(__dirname, 'public'),
+		publicPath: '/',
 		filename: 'bundle.js',
 	},
 	devServer: {
 		contentBase: path.resolve(__dirname, 'public'),
+		inline: true,
 	},
 	module: {
 		rules: [
@@ -28,7 +30,7 @@ module.exports = {
 				use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
 			},
 			{
-				test: /\.(png|gif|jpe?g|woff|woff2|eot|ttf|svg)$/,
+				test: /\.(png|gif|jpe?ginline: true,|woff|woff2|eot|ttf|svg)$/,
 				use: {
 					loader: 'url-loader',
 				},
