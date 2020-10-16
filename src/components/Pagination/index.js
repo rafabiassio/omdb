@@ -55,6 +55,7 @@ const Pagination = () => {
 			<Button
 				variant='primary'
 				onClick={() => handlePage()}
+				disabled={page === parseInt(totalResults / 10)}
 			>
 				Next
 			</Button>
