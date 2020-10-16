@@ -2,8 +2,8 @@ export default {
 	colors: {
 		text: '#fff',
 		background: '#060606',
-		primary: '#3cf',
-		secondary: '#e0f',
+		primary: '#1e88e5',
+		secondary: '#e53935',
 		muted: '#191919',
 		highlight: '#29112c',
 		gray: '#999',

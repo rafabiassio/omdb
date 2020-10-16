@@ -12,7 +12,7 @@ const Routes = () => {
 			{pageRoutes.map(route => (
 				<CustomRoute
 					key={route.path}
-					exact
+					exact={route.exact}
 					path={route.path}
 					parent={Layout}
 					component={route.component}

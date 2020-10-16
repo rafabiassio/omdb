@@ -7,3 +7,9 @@ export const getByTitleFailure = (data) => ({ type: constants.GET_BY_TITLE.FAILU
 export const getPageRequest = (data) => ({ type: constants.GET_PAGE.REQUEST, data })
 export const getPageSuccess = (data) => ({ type: constants.GET_PAGE.SUCCESS, data })
 export const getPageFailure = (data) => ({ type: constants.GET_PAGE.FAILURE, data })
+
+export const getByImdbRequest = (data) => ({ type: constants.GET_BY_IMDB.REQUEST, data })
+export const getByImdbSuccess = (data) => ({ type: constants.GET_BY_IMDB.SUCCESS, data })
+export const getByImdbFailure = (data) => ({ type: constants.GET_BY_IMDB.FAILURE, data })
+
+export const clearContent = () => ({ type: constants.CLEAR_CONTENT })

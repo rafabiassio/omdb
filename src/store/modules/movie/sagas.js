@@ -6,18 +6,17 @@ import {
 	getByTitleSuccess,
 	getByTitleFailure,
 	getPageSuccess,
-	getPageFailure
+	getPageFailure,
+	getByImdbSuccess,
+	getByImdbFailure
 } from './actions'
 
 const apiKey = process.env.API_KEY
 
-const MODULE = 'filme'
+const MODULE = 'movie'
 const ERROR = {
-	STORE: `Erro ao salvar ${MODULE}`,
-	LIST: `Erro ao carregar ${MODULE}s`,
-	SEARCH: `Erro ao buscar ${MODULE}s`,
-	GET: `Erro ao encontrar ${MODULE}s`,
-	UPDATE: `Error ao atualizar ${MODULE}`,
+	SEARCH: `Error find ${MODULE}s`,
+	GET: `Error get ${MODULE}`,
 }
 
 function* getByTitle({ data }) {
@@ -57,7 +56,27 @@ function* getByPage({ data }) {
 	}
 }
 
+function* getByImdb({ data }) {
+	try {
+		const { imdb } = data
+		const params = {
+			params: {
+				i: imdb,
+				apikey: apiKey,
+				type: 'movie',
+				plot: 'full'
+			}
+		}
+		const { data: response } = yield call(api.get, '', params)
+		yield put(getByImdbSuccess(response))
+	} catch (error) {
+		console.error(ERROR.GET)
+		yield put(getByImdbFailure(error))
+	}
+}
+
 export default all([
 	takeLatest(constants.GET_BY_TITLE.REQUEST, getByTitle),
 	takeLatest(constants.GET_PAGE.REQUEST, getByPage),
+	takeLatest(constants.GET_BY_IMDB.REQUEST, getByImdb),
 ])

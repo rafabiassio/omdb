@@ -13,13 +13,14 @@ const MovieList = () => {
 			sx={{
 				display: 'grid',
 				columnGap: 1,
-				rowGap: 2,
+				rowGap: 3,
 				gridTemplateColumns: 'repeat(auto-fit, 250px)',
 				width: '100%',
-				justifyContent: 'center'
+				justifyContent: 'center',
+				paddingBottom: 6
 			}}>
 			{movies.map((movie, index) => {
-				const { Poster, Title, Year } = movie
+				const { Poster, Title, Year, imdbID } = movie
 
 				return (
 					<Movie
@@ -27,6 +28,7 @@ const MovieList = () => {
 						posterImg={Poster}
 						title={Title}
 						year={Year}
+						imdb={imdbID}
 					/>
 				)
 			})}

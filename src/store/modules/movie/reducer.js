@@ -13,6 +13,11 @@ const initialState = {
 
 export default (state = initialState, action) => {
 	switch (action.type) {
+		case actions.CLEAR_CONTENT:
+			return {
+				...state,
+				content: null
+			}
 		case actions.GET_BY_TITLE.REQUEST:
 			return {
 				...state,
@@ -62,6 +67,27 @@ export default (state = initialState, action) => {
 				pageTo: '',
 				error: {
 					type: actions.GET_PAGE.FAILURE,
+					error: action.data,
+				},
+			}
+
+		case actions.GET_BY_IMDB.REQUEST:
+			return {
+				...state,
+				loading: true
+			}
+		case actions.GET_BY_IMDB.SUCCESS:
+			return {
+				...state,
+				loading: false,
+				content: action.data,
+			}
+		case actions.GET_BY_IMDB.FAILURE:
+			return {
+				...state,
+				loading: false,
+				error: {
+					type: actions.GET_BY_IMDB.FAILURE,
 					error: action.data,
 				},
 			}

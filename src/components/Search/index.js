@@ -17,11 +17,12 @@ const Search = () => {
 
 	const onSubmit = (data, event) => {
 		const { searchInput } = data
+		const query = searchInput.trim().toLowerCase()
 		event.preventDefault()
 
-		if (isValid) {
+		if (isValid && query !== lastValueSearched) {
 			dispatch(getByTitleRequest({
-				title: searchInput.trim().toLowerCase()
+				title: query
 			}))
 		}
 	}
@@ -67,13 +68,8 @@ const Search = () => {
 				/>
 				<Box py={2}>
 					<Button
-						sx={{
-							bg: 'purple',
-							fontWeight: 'bold',
-							py: 2
-						}}
+						variant='purple'
 						disabled={!isValid}
-						style={!isValid ? { opacity: '0.4' } : {}}
 					>
 						Search
 				</Button>

@@ -1,5 +1,7 @@
 import Home from './Home'
+import MovieDetail from './MovieDetail'
 
 export default {
-	Home
+	Home,
+	MovieDetail
 }
