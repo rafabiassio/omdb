@@ -1,32 +1,59 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
-import { Flex, Text } from 'rebass'
-import { useLocation } from 'react-router-dom'
+import { Flex, Text, Link } from 'rebass'
+import { useHistory } from 'react-router-dom'
 
 import Pagination from '../Pagination'
-import paginationList from '../Pagination/pagination'
+import { MOVIE_DETAIL } from '../../routes/paths'
 
 const Footer = () => {
-	const location = useLocation()
-	const [isPagination, setPagination] = useState(false)
+	const history = useHistory()
+	const [isHome, setHome] = useState(true)
 	const { totalResults } = useSelector((state) => ({
 		totalResults: state.movie.totalResults
 	}))
 
 	useEffect(() => {
-		const withPagination = paginationList
-			.some(path => (
-				path === location.pathname
-			))
-		setPagination(withPagination)
-	}, [location.pathname])
+		if (history.location.pathname.includes(MOVIE_DETAIL.url)) {
+			setHome(false)
+		}
+	}, [history.location.pathname])
 
 	const Signature = () => {
 		return (
 			<Flex px={2} color='white' bg='purple' alignItems='center' justifyContent='center'>
 				<Text>@ Designed by Rafael Biassio</Text>
 			</Flex>
+		)
+	}
+
+	const NavLink = () => {
+		if (isHome) {
+			return null
+		}
+
+		return (
+			<Link
+				variant='nav'
+				sx={{
+					position: 'absolute',
+					left: '40px',
+					display: 'inline-block',
+					fontWeight: 'bold',
+					px: 2,
+					py: 1,
+					color: 'inherit',
+					'&:hover': {
+						color: 'primary'
+					}
+				}}
+				onClick={() => {
+					history.goBack()
+				}}
+			>
+				Back to home
+			</Link >
 		)
 	}
 
@@ -43,7 +70,9 @@ const Footer = () => {
 				color: 'white'
 			}}
 		>
-			{(isPagination && totalResults > 0)
+			<NavLink />
+
+			{(isHome && totalResults > 0)
 				? <Pagination />
 				: <Signature />
 			}

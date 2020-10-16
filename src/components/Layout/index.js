@@ -1,23 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Flex, Text, Box } from 'rebass'
+
+import Header from '../Header'
+import Footer from '../Footer'
 
 const Layout = ({ children }) => {
 	return (
 		<>
-			<Flex px={2} color="white" bg="#4527a0" alignItems="center">
-				<Text p={2} fontWeight="bold">
-					OMDB
-				</Text>
-				<Box mx="auto" />
-			</Flex>
+			<Header />
 			<main>{children}</main>
+			<Footer />
 		</>
 	)
 }
 
 Layout.propTypes = {
-	children: PropTypes.func.isRequired
+	children: PropTypes.any.isRequired
 }
 
 export default Layout
