@@ -4,7 +4,7 @@ export const HOME = {
 }
 
 export const MOVIE_DETAIL = {
-	url: '/movie',
+	url: '/movie/',
 	label: 'Movie Detail'
 }
 

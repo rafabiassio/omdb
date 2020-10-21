@@ -1,24 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Flex, Card, Image, Text, Box } from 'rebass'
-import { useHistory } from 'react-router-dom'
 
-import { MOVIE_DETAIL } from '../../routes/paths'
-
-const Movie = ({ posterImg, title, year, imdb }) => {
-	const history = useHistory()
-
-	const toMovieDetail = () => {
-		const pathname = `${MOVIE_DETAIL.url}/${imdb}`
-		history.push({
-			pathname,
-			state: { imdb }
-		})
-	}
+const Movie = ({ posterImg, title, year, imdb, handleClickMovie }) => {
 
 	return (
 		<Flex
-			onClick={toMovieDetail}
+			onClick={() => handleClickMovie({ imdb })}
 		>
 			<Card
 				sx={{
@@ -69,6 +57,7 @@ Movie.propTypes = {
 	title: PropTypes.string.isRequired,
 	year: PropTypes.string.isRequired,
 	imdb: PropTypes.string.isRequired,
+	handleClickMovie: PropTypes.func.isRequired
 }
 
 export default Movie

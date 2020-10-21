@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
 
 import Pagination from '../../components/Pagination'
-import { HOME } from '../../routes/paths'
+import { HOME, MOVIE_DETAIL } from '../../routes/paths'
 import { getPageRequest, getByTitleRequest } from '../../store/modules/movie/actions'
 
 const Home = () => {
@@ -68,13 +68,24 @@ const Home = () => {
 		})
 	}
 
+	const handleMovieDetail = ({ imdb }) => {
+		const pathname = `${MOVIE_DETAIL.url}${imdb}`
+		history.push({
+			pathname,
+			state: { imdb }
+		})
+	}
+
 	return (
 		<>
 			<Search
 				lastValueSearched={valueSearched}
 				handleSearch={handleByTitle}
 			/>
-			<MovieList />
+			<MovieList
+				movies={movies}
+				handleClickAction={handleMovieDetail}
+			/>
 			{allowPagination &&
 				<Pagination
 					page={page}
