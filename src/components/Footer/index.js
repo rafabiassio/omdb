@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
 import { Flex, Text, Link } from 'rebass'
 import { useHistory } from 'react-router-dom'
 
-import Pagination from '../Pagination'
+import { sizing } from '../../theme'
 import { MOVIE_DETAIL } from '../../routes/paths'
 
 const Footer = () => {
 	const history = useHistory()
 	const [isHome, setHome] = useState(true)
-	const { totalResults } = useSelector((state) => ({
-		totalResults: state.movie.totalResults
-	}))
 
 	useEffect(() => {
 		if (history.location.pathname.includes(MOVIE_DETAIL.url)) {
@@ -63,7 +59,7 @@ const Footer = () => {
 				position: 'fixed',
 				bottom: '0',
 				width: '100%',
-				height: '52px',
+				height: `${sizing.footerHeight}`,
 				justifyContent: 'center',
 				alignItems: 'center',
 				bg: 'purple',
@@ -71,11 +67,7 @@ const Footer = () => {
 			}}
 		>
 			<NavLink />
-
-			{(isHome && totalResults > 0)
-				? <Pagination />
-				: <Signature />
-			}
+			<Signature />
 		</Flex>
 	)
 }

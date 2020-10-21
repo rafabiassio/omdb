@@ -1,0 +1,19 @@
+html, #app, main {
+  height: 100%;
+}
+
+body {
+	margin: 0;
+	min-height: 100%;
+}
+
+#app {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	overflow: hidden;
+}
+
+main {
+	overflow: overlay;
+}

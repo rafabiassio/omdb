@@ -17,7 +17,7 @@ const MovieList = () => {
 				gridTemplateColumns: 'repeat(auto-fit, 250px)',
 				width: '100%',
 				justifyContent: 'center',
-				paddingBottom: 6
+				paddingBottom: 4
 			}}>
 			{movies.map((movie, index) => {
 				const { Poster, Title, Year, imdbID } = movie

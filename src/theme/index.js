@@ -1,3 +1,8 @@
+export const sizing = {
+	headerHeight: '40px',
+	footerHeight: '30px'
+}
+
 export default {
 	colors: {
 		text: '#fff',
