@@ -6,7 +6,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 
 import Pagination from '../../components/Pagination'
 import { HOME } from '../../routes/paths'
-import { getPageRequest } from '../../store/modules/movie/actions'
+import { getPageRequest, getByTitleRequest } from '../../store/modules/movie/actions'
 
 const Home = () => {
 	const dispatch = useDispatch()
@@ -28,9 +28,10 @@ const Home = () => {
 	useEffect(() => {
 		const { state, pathname } = location
 		const pageValue = state?.page || pathname.split('/').reverse()[0]
+		const titleValue = state?.title || pathname.split('/').reverse()[1]
 
 		if (pageValue) {
-			handleByPage({ pageValue })
+			handleByPage({ pageValue, titleValue })
 		}
 	}, [location])
 
@@ -40,9 +41,15 @@ const Home = () => {
 		}
 	}, [totalResults])
 
-	const handleByPage = ({ pageValue, pageTo }) => {
+	const handleByTitle = ({ value }) => {
+		dispatch(getByTitleRequest({
+			title: value
+		}))
+	}
+
+	const handleByPage = ({ pageValue, pageTo, titleValue }) => {
 		let requestProps = {
-			title: valueSearched,
+			title: titleValue || valueSearched,
 			page: pageValue
 		}
 
@@ -56,14 +63,17 @@ const Home = () => {
 	const handlePageAction = ({ pageValue }) => {
 		handleByPage({ pageValue })
 		history.push({
-			pathname: `${HOME.url}${pageValue}`,
+			pathname: `${HOME.url}${valueSearched}/${pageValue}`,
 			state: { page: pageValue }
 		})
 	}
 
 	return (
 		<>
-			<Search />
+			<Search
+				lastValueSearched={valueSearched}
+				handleSearch={handleByTitle}
+			/>
 			<MovieList />
 			{allowPagination &&
 				<Pagination
