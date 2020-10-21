@@ -1,55 +1,30 @@
-import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
-import { Flex, Text, Link } from 'rebass'
-import { useHistory } from 'react-router-dom'
+import React from 'react'
+import { Flex, Text } from 'rebass'
+import {
+	FaGithub as GithubIcon,
+	FaLinkedin as LinkedinIcon
+} from 'react-icons/fa'
 
 import { sizing } from '../../theme'
-import { MOVIE_DETAIL } from '../../routes/paths'
+import Anchor from '../../components/Anchor'
 
 const Footer = () => {
-	const history = useHistory()
-	const [isHome, setHome] = useState(true)
-
-	useEffect(() => {
-		if (history.location.pathname.includes(MOVIE_DETAIL.url)) {
-			setHome(false)
-		}
-	}, [history.location.pathname])
 
 	const Signature = () => {
 		return (
 			<Flex px={2} color='white' bg='purple' alignItems='center' justifyContent='center'>
 				<Text>@ Designed by Rafael Biassio</Text>
+				<Anchor
+					icon={<GithubIcon />}
+					href="https://github.com/rafabiassio"
+					target="_blank"
+				/>
+				<Anchor
+					icon={<LinkedinIcon />}
+					href="https://www.linkedin.com/in/rafael-biassio/"
+					target="_blank"
+				/>
 			</Flex>
-		)
-	}
-
-	const NavLink = () => {
-		if (isHome) {
-			return null
-		}
-
-		return (
-			<Link
-				variant='nav'
-				sx={{
-					position: 'absolute',
-					left: '40px',
-					display: 'inline-block',
-					fontWeight: 'bold',
-					px: 2,
-					py: 1,
-					color: 'inherit',
-					'&:hover': {
-						color: 'primary'
-					}
-				}}
-				onClick={() => {
-					history.goBack()
-				}}
-			>
-				Back to home
-			</Link >
 		)
 	}
 
@@ -66,14 +41,9 @@ const Footer = () => {
 				color: 'white'
 			}}
 		>
-			<NavLink />
 			<Signature />
 		</Flex>
 	)
-}
-
-Footer.propTypes = {
-	totalResults: PropTypes.number
 }
 
 export default Footer
