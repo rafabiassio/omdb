@@ -1,4 +1,5 @@
 import { call, put, takeLatest, all } from 'redux-saga/effects'
+import { showLoading, hideLoading } from 'react-redux-loading-bar'
 import { api } from '../../../config/axios'
 import * as constants from './constants'
 
@@ -29,11 +30,14 @@ function* getByTitle({ data }) {
 				type: 'movie'
 			}
 		}
+		yield put(showLoading())
 		const { data: response } = yield call(api.get, '', params)
 		yield put(getByTitleSuccess(response))
 	} catch (error) {
 		console.error(ERROR.SEARCH)
 		yield put(getByTitleFailure(error))
+	} finally {
+		yield put(hideLoading())
 	}
 }
 
@@ -48,11 +52,14 @@ function* getByPage({ data }) {
 				type: 'movie'
 			}
 		}
+		yield put(showLoading())
 		const { data: response } = yield call(api.get, '', params)
 		yield put(getPageSuccess(response))
 	} catch (error) {
 		console.error(ERROR.SEARCH)
 		yield put(getPageFailure(error))
+	} finally {
+		yield put(hideLoading())
 	}
 }
 
@@ -67,11 +74,14 @@ function* getByImdb({ data }) {
 				plot: 'full'
 			}
 		}
+		yield put(showLoading())
 		const { data: response } = yield call(api.get, '', params)
 		yield put(getByImdbSuccess(response))
 	} catch (error) {
 		console.error(ERROR.GET)
 		yield put(getByImdbFailure(error))
+	} finally {
+		yield put(hideLoading())
 	}
 }
 
