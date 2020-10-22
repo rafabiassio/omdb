@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import Search from '../../components/Search'
-import MovieList from '../../components/MovieList'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
 
+import Search from '../../components/Search'
+import MovieList from '../../components/MovieList'
 import Pagination from '../../components/Pagination'
 import { HOME, MOVIE_DETAIL } from '../../routes/paths'
-import { getPageRequest, getByTitleRequest } from '../../store/modules/movie/actions'
+import {
+	getPageRequest,
+	getByTitleRequest,
+	clearAll
+} from '../../store/modules/movie/actions'
 
 const Home = () => {
 	const dispatch = useDispatch()
@@ -30,8 +34,11 @@ const Home = () => {
 		const pageValue = state?.page || pathname.split('/').reverse()[0]
 		const titleValue = state?.title || pathname.split('/').reverse()[1]
 
-		if (pageValue) {
+		if (pageValue && titleValue) {
 			handleByPage({ pageValue, titleValue })
+		} else {
+			dispatch(clearAll())
+			history.push(HOME.url)
 		}
 	}, [location])
 
@@ -60,8 +67,12 @@ const Home = () => {
 		dispatch(getPageRequest(requestProps))
 	}
 
-	const handlePageAction = ({ pageValue }) => {
-		handleByPage({ pageValue })
+	const handlePageAction = ({ pageValue, pageTo }) => {
+		handleByPage({
+			pageValue,
+			titleValue: valueSearched,
+			pageTo
+		})
 		history.push({
 			pathname: `${HOME.url}${valueSearched}/${pageValue}`,
 			state: { page: pageValue }
@@ -69,9 +80,8 @@ const Home = () => {
 	}
 
 	const handleMovieDetail = ({ imdb }) => {
-		const pathname = `${MOVIE_DETAIL.url}${imdb}`
 		history.push({
-			pathname,
+			pathname: `${MOVIE_DETAIL.url}${imdb}`,
 			state: { imdb }
 		})
 	}

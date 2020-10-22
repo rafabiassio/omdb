@@ -56,6 +56,7 @@ const Search = ({ lastValueSearched, handleSearch }) => {
 						minLength: 1,
 						validate: (value) => value.trim().length > 0
 					})}
+					autoFocus={true}
 				/>
 				<Box py={2}>
 					<Button

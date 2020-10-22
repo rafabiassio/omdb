@@ -13,3 +13,5 @@ export const getByImdbSuccess = (data) => ({ type: constants.GET_BY_IMDB.SUCCESS
 export const getByImdbFailure = (data) => ({ type: constants.GET_BY_IMDB.FAILURE, data })
 
 export const clearContent = () => ({ type: constants.CLEAR_CONTENT })
+
+export const clearAll = () => ({ type: constants.CLEAR_ALL })

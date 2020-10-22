@@ -19,3 +19,5 @@ export const GET_BY_IMDB = {
 }
 
 export const CLEAR_CONTENT = `${customModule}/CLEAR_CONTENT`
+
+export const CLEAR_ALL = `${customModule}/CLEAR_ALL`

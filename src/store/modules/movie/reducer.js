@@ -18,6 +18,8 @@ export default (state = initialState, action) => {
 				...state,
 				content: null
 			}
+		case actions.CLEAR_ALL:
+			return { ...initialState }
 		case actions.GET_BY_TITLE.REQUEST:
 			return {
 				...state,
@@ -48,8 +50,9 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				loading: true,
-				page: action.data?.page || state.page,
-				pageTo: action.data?.pageTo || state.pageTo
+				page: +action.data?.page || state.page,
+				pageTo: action.data?.pageTo || state.pageTo,
+				valueSearched: action.data?.title || ''
 			}
 		case actions.GET_PAGE.SUCCESS:
 			return {

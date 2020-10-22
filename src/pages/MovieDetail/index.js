@@ -35,7 +35,7 @@ const MovieDetail = () => {
 	}, [location])
 
 	const backToHome = () => {
-		history.replace({
+		history.push({
 			pathname: `${HOME.url}${valueSearched}/${page}`,
 			state: {
 				page,
