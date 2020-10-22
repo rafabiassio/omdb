@@ -1,17 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useDispatch, useSelector } from 'react-redux'
 import { Box, Flex, Button } from 'rebass'
 import { Input } from '@rebass/forms'
 import { useForm } from 'react-hook-form'
 
-import { getByTitleRequest } from '../../store/modules/movie/actions'
-
-const Search = () => {
-	const dispatch = useDispatch()
-	const { valueSearched: lastValueSearched } = useSelector((state) => ({
-		valueSearched: state.movie.valueSearched
-	}))
+const Search = ({ lastValueSearched, handleSearch }) => {
 	const { register, formState, setValue, handleSubmit } = useForm()
 	const { isValid } = formState
 
@@ -21,9 +14,7 @@ const Search = () => {
 		event.preventDefault()
 
 		if (isValid && query !== lastValueSearched) {
-			dispatch(getByTitleRequest({
-				title: query
-			}))
+			handleSearch({ value: query })
 		}
 	}
 
@@ -65,6 +56,7 @@ const Search = () => {
 						minLength: 1,
 						validate: (value) => value.trim().length > 0
 					})}
+					autoFocus={true}
 				/>
 				<Box py={2}>
 					<Button
@@ -80,7 +72,8 @@ const Search = () => {
 }
 
 Search.propTypes = {
-	valueSearched: PropTypes.string
+	lastValueSearched: PropTypes.string.isRequired,
+	handleSearch: PropTypes.func.isRequired
 }
 
 export default Search

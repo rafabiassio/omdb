@@ -1,12 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
 import { Box } from 'rebass'
 
 import Movie from '../Movie'
 
-const MovieList = () => {
-	const { movies = [] } = useSelector((state) => ({ movies: state.movie.movies }))
+const MovieList = ({ movies, handleClickAction }) => {
 
 	return (
 		<Box
@@ -17,7 +15,7 @@ const MovieList = () => {
 				gridTemplateColumns: 'repeat(auto-fit, 250px)',
 				width: '100%',
 				justifyContent: 'center',
-				paddingBottom: 6
+				paddingBottom: 4
 			}}>
 			{movies.map((movie, index) => {
 				const { Poster, Title, Year, imdbID } = movie
@@ -29,6 +27,7 @@ const MovieList = () => {
 						title={Title}
 						year={Year}
 						imdb={imdbID}
+						handleClickMovie={handleClickAction}
 					/>
 				)
 			})}

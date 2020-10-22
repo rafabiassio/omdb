@@ -18,6 +18,8 @@ export default (state = initialState, action) => {
 				...state,
 				content: null
 			}
+		case actions.CLEAR_ALL:
+			return { ...initialState }
 		case actions.GET_BY_TITLE.REQUEST:
 			return {
 				...state,
@@ -30,7 +32,7 @@ export default (state = initialState, action) => {
 				loading: false,
 				content: null,
 				movies: action.data?.Search || [],
-				totalResults: action.data?.totalResults || 0,
+				totalResults: +action.data?.totalResults || 0,
 				page: 1
 			}
 		case actions.GET_BY_TITLE.FAILURE:
@@ -48,15 +50,17 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				loading: true,
-				page: action.data?.page || state.page,
-				pageTo: action.data?.pageTo || state.pageTo
+				page: +action.data?.page || state.page,
+				pageTo: action.data?.pageTo || state.pageTo,
+				valueSearched: action.data?.title || ''
 			}
 		case actions.GET_PAGE.SUCCESS:
 			return {
 				...state,
 				loading: false,
 				content: null,
-				movies: action.data?.Search || []
+				movies: action.data?.Search || [],
+				totalResults: +action.data?.totalResults || state.totalResults,
 			}
 		case actions.GET_PAGE.FAILURE:
 			const pageValue = state.pageTo === 'next' ? 1 : -1

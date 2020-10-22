@@ -1,13 +1,14 @@
 import pages from '../pages/pages'
+import { HOME, MOVIE_DETAIL } from './paths'
 
 const Home = {
-	path: '/',
+	path: HOME.url,
 	component: pages.Home,
 	exact: true
 }
 
 const MovieDetail = {
-	path: '/movie/:imdb',
+	path: `${MOVIE_DETAIL.url}:imdb`,
 	component: pages.MovieDetail,
 	exact: true
 }

@@ -1,14 +1,21 @@
+export const sizing = {
+	headerHeight: '40px',
+	footerHeight: '30px'
+}
+
+export const colors = {
+	text: '#fff',
+	background: '#060606',
+	primary: '#1e88e5',
+	secondary: '#e53935',
+	muted: '#191919',
+	highlight: '#29112c',
+	gray: '#999',
+	purple: '#4527a0',
+}
+
 export default {
-	colors: {
-		text: '#fff',
-		background: '#060606',
-		primary: '#1e88e5',
-		secondary: '#e53935',
-		muted: '#191919',
-		highlight: '#29112c',
-		gray: '#999',
-		purple: '#4527a0',
-	},
+	colors: colors,
 	fonts: {
 		body:
 			'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
